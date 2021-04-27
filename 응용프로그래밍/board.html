@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <style>
+            .t-center {
+                text-align: center;
+            }
+            #t-no {
+                width: 50px;
+            }
+            #t-title {
+                width: 300px;
+            }
+            #t-user {
+                width: 100px;
+            }
+            #t-date {
+                width: 120px;
+            }
+            .div-label {
+                position: absolute;
+            }
+            .label-list {
+                font-weight: normal;
+                display: inline-block;
+                width: 20px;
+            }
+            .label-list.label-selected {
+                font-weight: bold;
+            }
+            thead {
+                background-image: url("images/cloud.jpg");
+                background-size: 10%;
+            }
+        </style>
+		<title>응용프로그래밍</title>
+	<head>
+	<body>
+        <h1>우리들의 게시판</h1>
+        <hr>
+        <table class="t-center" id="main-table" border="1">
+            <thead id="t-head">
+
+            </thead>
+            <tbody id="t-body">
+
+            </tbody>
+        </table>
+        <div id="div-label">
+        </div>
+		<script>
+            document.addEventListener("DOMContentLoaded", function() {
+                initBoardTable(47);
+                viewBoard();
+            });
+            let topTitle = ["번호", "제목", "글쓴이", "등록일"];
+            let titleId = ["t-no", "t-title", "t-user", "t-date"];
+            let boardList = [];
+            let page = 1;
+            let viewSize = 5;
+
+            function initBoardTable(maxsize) {
+                let titleList = [
+                    "까마귀 날자 배 떨어진다",
+                    "가는 날이 장날이다",
+                    "가랑비에 옷 젖는 줄 모른다",
+                    "가재는 게 편이라",
+                    "싼 게 비지떡",
+                    "간이 콩알만해지다",
+                    "갈수록 태산",
+                    "개밥에 도토리",
+                    "티끌 모아 티끌",
+                    "강든 탑이 무너지랴",
+                    "그림의 떡"
+                ]
+                
+                let startNumber = 0;
+                let boardCount = maxsize;
+
+                // topTitle
+                let thead = document.getElementById("t-head");
+                let title = thead.insertRow(thead.length);
+                for(let i = 0; i < topTitle.length; i++) {
+                    let cell = title.insertCell(i);
+                    cell.id = titleId[i];
+                    cell.innerHTML = topTitle[i];
+                }
+
+                // element
+                for(let idx = startNumber + boardCount; idx > startNumber; idx--) {
+                    let element = [idx, titleList[parseInt(Math.random() * titleList.length)], "익명", "2021-11-11"]
+                    boardList.push(element);
+                }
+
+                // list label
+                let div = document.getElementById("div-label");
+                for(let i = 0; i < parseInt(boardList.length / viewSize) + 1; i++) {
+                    let a = document.createElement("a");
+                    a.innerHTML = i + 1;
+                    a.className = "label-list";
+                    a.className += page === i + 1 ? " label-selected" : "";
+                    a.href = "javascript:;";
+                    a.addEventListener("click", function() {
+                        pageSelect(this);
+                    });
+                    div.append(a);
+                }
+            }
+
+            function viewBoard() {
+                let tbody = document.getElementById("t-body");
+                while(tbody.rows.length > 0) {
+                    
+                    tbody.deleteRow(0);
+                }
+                let listSize = boardList.length - viewSize * (page - 1);
+                for(let i = 0; i < (listSize > 5 ? viewSize : listSize); i++) {
+                    let element = tbody.insertRow(tbody.length);
+                    for(let cid = 0; cid < topTitle.length; cid++) {
+                        let idx = (page - 1) * viewSize + i;
+                        let cell = element.insertCell(cid);
+                        let a = document.createElement("a");
+                        if (cid == 1) {
+                            a.innerHTML = boardList[idx][cid];
+                            a.href = "#";
+                            cell.append(a);
+                        }
+                        else {
+                            cell.innerHTML = boardList[idx][cid];
+                        }
+                    }
+                }
+            }
+
+            function pageSelect(a) {
+                let list = document.getElementsByClassName("label-list");
+                for(let i = 0; i < list.length; i++){
+                    list[i].className = "label-list";
+                }
+                a.className += " label-selected";
+                page = parseInt(a.innerHTML);
+                viewBoard();
+            }
+        </script>
+	</body>
+</html>

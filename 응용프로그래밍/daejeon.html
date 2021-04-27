@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대전8경 메인페이지</title>
+    <style>
+        * {margin: 0; padding: 0;}
+
+        h3 {
+            margin-top: 5px;
+        }
+        table {
+            border-collapse: collapse;
+            padding: 1px;
+            margin: 1px;
+        }
+        th {
+            width: 100px;
+            height: 30px;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        a {
+            font-weight: normal;
+            color: black;
+            text-decoration: none;
+        }
+        a.link-selected {
+            font-weight: bold;
+            color: blue;
+        }
+        
+        #warp {
+            margin: 0 auto;
+            width: 1200px;
+            height: 700px;
+        }
+        #header {
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+        }
+        #container {
+            height: 500px;
+        }
+        #aside {
+            width: 1200px;
+            height: 30px;
+            background: greenyellow;
+        }
+        #contents {
+            width: 1200px;
+            height: 700px;
+        }
+    </style>
+</head>
+<body>
+    <div id="warp">
+        <div id="header">
+            <h1>대전 8경</h1>
+            <hr>
+        </div>
+        <div id="container">
+            <div id="aside">
+                <table >
+                    <th>
+                        <a class="link link-selected" href="javascript:;" onclick="movePage(this, 'daejeon_preview.html');">소개</a>
+                    </th>
+                    <th>
+                        <a class="link" href="javascript:;" onclick="movePage(this, 'daejeon_list.html');">목록</a>
+                    </th>
+                    <th>
+                        <a class="link" href="javascript:;" onclick="movePage(this, 'register.html');">회원가입</a>
+                    </th>
+                    <th>
+                        <a class="link" href="javascript:;" onclick="movePage(this, 'browser.html');">브라우저역사</a>
+                    </th>
+                    <th>
+                        <a class="link" href="javascript:;" onclick="movePage(this, 'daejeon_contactus.html');">문의하기</a>
+                    </th>
+                </table>
+            </div>
+            <div id="contents">
+                <iframe id="iframe-contents" src="daejeon_preview.html">지원되지 않는 브라우저입니다.</iframe>
+            </div>
+        </div>
+    </div>
+    <script>
+        function movePage(e, url) {
+            let list = document.getElementsByClassName("link");
+            for(let i = 0; i < list.length; i++){
+                list[i].className = "link";
+            }
+            e.className += " link-selected";
+            iframe = document.getElementById("iframe-contents");
+            iframe.src = url;
+        }
+    </script>
+</body>
+</html>

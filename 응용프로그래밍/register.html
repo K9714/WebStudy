@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<title>회원가입</title>
+    <style>
+        fieldset {
+            background-image: url("images/cloud.jpg");
+            background-size: 40%;
+        }
+    </style>
+<head>
+<body>
+    <h1>회원가입</h1>
+    <hr>
+    <form method="POST">
+        <fieldset>
+            <legend>계정 정보</legend>
+            <label style="display:inline-block; width: 110px;">아이디:</label>
+            <input type="text" id="name"/>
+            <input type="button" id="name" value="중복확인"/>   
+            <br>
+            <label style="display:inline-block; width: 110px;">비밀번호:</label>
+            <input type="password" id="name"/>
+            <br>
+            <label style="display:inline-block; width: 110px;">비밀번호 확인:</label>
+            <input type="password" id="name"/>
+            <br>
+        </fieldset>
+        <fieldset>
+            <legend>개인 정보</legend>
+            <label>이름: </label>
+            <input type="text" style="width:100px;"/>
+            <br>
+            <label>생년월일: </label>
+            <input type="text" style="width:100px;" placeholder="0000-00-00" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"/>
+            <br>
+            <label>성별: </label>
+            <input type="radio" name="sex" value="male"/>남성
+            <input type="radio" name="sex" value="female"/>여성
+            <br>
+            <label>직업: </label>
+            <select name="job" size="1">
+                <option>학생</option>
+                <option>직장인</option>
+                <option>사업자</option>
+                <option>무직</option>
+            </select>
+            <p>
+                <label>희망분야(복수선택 가능)</label>
+                <br>
+                <label>분야: </label>
+                <input type="checkbox" name="hobby" value="read"/>통신
+                <input type="checkbox" name="hobby" value="movie"/>개발자
+                <input type="checkbox" name="hobby" value="music"/>보안
+                <input type="checkbox" name="hobby" value="music"/>기타
+            </p>
+            <label>비고</label>
+            <br>
+            <textarea rows="5" cols="30" name="contents"></textarea>
+            <br>
+        </fieldset>
+        <br>
+        <br>
+        
+        <input type="submit" value="신청"/>
+        <input type="reset" value="취소"/>
+    </form>
+</body>

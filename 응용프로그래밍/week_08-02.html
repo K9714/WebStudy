@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>응용프로그래밍 7주차 과제</title>
+	<head>
+	<body>
+        <h1>배열 옮기기</h1>
+		<script>
+            function printArray(arr) {
+                let str = "";
+                for (let i = 0; i < arr.length; i++) {
+                    str += `${arr[i]} `;
+                }
+                document.write(`<a>${str}</a>`);
+                document.write(`<br>`);
+            }
+            function sortOnlyNumberArray(arr, n) {
+                for (let i = 0; i < arr.length; i++) {
+                    if (arr[i] === n) {
+                        arr.splice(i, 1);
+                        arr.push(n);
+                    }
+                }
+            }
+            let arr = [1, 0, 1, 2, 0, 1, 3, "a"];
+            document.write(`<a>초기 Array : </a>`);
+            printArray(arr);
+            sortOnlyNumberArray(arr, 0);
+            document.write(`<a>정렬 Array : </a>`);
+            printArray(arr);
+        </script>
+	</body>
+</html>

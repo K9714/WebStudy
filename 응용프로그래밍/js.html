@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>응용프로그래밍 7주차 과제</title>
+	<head>
+	<body>
+		<script>
+            function work() {
+                let num = null;
+                do {
+                    if (num !== null) {
+                        alert("정확한 범위의 수로 입력해주세요.");
+                    }
+                    num = parseInt(prompt("0 ~ 100 사이의 정수를 입력해주세요.", 0));
+                } while(num < 0 || num > 100);
+                confirm(`현재 입력된 수는 ${num} 이며, ${num % 2 == 0 ? "짝수" : "홀수"}입니다.`);
+                document.write(`Input number : ${num}<br>`);
+                for(let y = 0; y < num; y++) {
+                    for(let ns = 0; ns < num - y - 1; ns++) {
+                        document.write('&nbsp;');
+                    }
+                    for(let x = 0; x < y * 2 + 1; x++) {
+                        document.write('*');
+                    }
+                    document.write('<br>');
+                }
+            }
+            work();
+        </script>
+	</body>
+</html>

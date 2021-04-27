@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<title>설문조사</title>
+<head>
+<body>
+    <h1>설문조사</h1>
+    <hr>
+    <form method="POST">
+        <label>성명: </label>
+        <input type="text" id="name"/>
+        <br>
+
+        <label>성별: </label>
+        <input type="radio" name="sex" value="male"/>남성
+        <input type="radio" name="sex" value="female"/>여성
+        <br>
+
+        <label>직업: </label>
+        <select name="job" size="1">
+            <option>학생</option>
+            <option>직장인</option>
+            <option>사업자</option>
+            <option>무직</option>
+        </select>
+        <br>
+        <br>
+        <p>
+            <label>희망분야(복수선택 가능)</label>
+            <br>
+            <label>분야: </label>
+            <input type="checkbox" name="hobby" value="read"/>통신
+            <input type="checkbox" name="hobby" value="movie"/>개발자
+            <input type="checkbox" name="hobby" value="music"/>보안
+        </p>
+        <label>비고</label>
+        <br>
+        <textarea rows="5" cols="30" name="contents"></textarea>
+        <br>
+        <input type="submit" value="신청"/>
+        <input type="reset" value="취소"/>
+    </form>
+</body>

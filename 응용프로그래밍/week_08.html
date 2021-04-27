@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>응용프로그래밍 7주차 과제</title>
+	<head>
+	<body>
+        <h1>피보나치 수열 출력</h1>
+		<script>
+            let Fibonacci = function (n) {
+                if (isNaN(n)) return 0;
+                if (n < 2) return n;
+                return Fibonacci(n - 1) + Fibonacci(n - 2);
+            }
+            let n = prompt('피보나치 수열 n 값을 입력하세요', 0);
+            let f = Fibonacci(n);
+            document.write(`<p>Fibonacci(${n}) = ${f}</p><br>`);
+        </script>
+	</body>
+</html>
