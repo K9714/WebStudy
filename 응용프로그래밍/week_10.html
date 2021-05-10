@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            div {
+                position: absolute;
+            }
+            img {
+                position: absolute;
+            }
+            #SA {
+                z-index: -3;
+                left: 10px;
+                top: 20px;
+            }
+            #S1 {
+                z-index: 2;
+                left: 40px;
+                top: 30px;
+            }
+            #S2 {
+                z-index: 3;
+                left: 80px;
+                top: 40px;
+            }
+            #S3 {
+                z-index: 7;
+                left: 120px;
+                top: 50px;
+            }
+            div.gamble {
+                display: inline-block;
+                position: relative;
+                text-align: center;
+                font-size: 25pt;
+                width: 50px;
+                height: 50px;
+                background-color: orange;
+            }
+            .no-drag {
+                -ms-user-select: none;
+                -moz-user-select: -moz-none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                user-select:none;
+            }
+        </style>
+		<title>응용프로그래밍 10주차 과제</title>
+	<head>
+	<body>
+        <!--
+            1번
+        -->
+        <h1>라면을 끓이는 순서</h1>
+        <hr>
+        <ol type="A" onclick="changeBackground(this);">
+            <li>물을 끓인다.</li>
+            <li>라면과 스프를 넣는다.</li>
+            <li>파를 썰어 넣는다.</li>
+            <li>5분 후 <strong>맛있게</strong> 먹는다.</li>
+        </ol>
+		<script>
+            function changeBackground(o) {
+                o.style.backgroundColor = "yellowgreen";
+            }
+            let liList = document.getElementsByTagName("li");
+            for(let i = 0; i < liList.length; i++) {
+                liList[i].style.color = "green";
+            }
+        </script>
+        <!--
+            2번
+        -->
+        <h1>z-index 스타일 프로퍼티</h1>
+        <hr>
+        <div>
+            <img id="SA" src="card/SA_Preview.jpg" width="100" height="140" alt="스페이드A">
+            <img id="S2" src="card/S2_Preview.jpg" width="100" height="140" alt="스페이드2">
+            <img id="S3" src="card/S3_Preview.jpg" width="100" height="140" alt="스페이드3">
+            <img id="S4" src="card/S4_Preview.jpg" width="100" height="140" alt="스페이드4">
+        </div>
+        <script type="text/javascript">
+            let images = document.getElementsByTagName("img");
+            for (let i = 0; i < images.length; i++) {
+                //images[i].style.position = "relative";
+                images[i].style.left = `${i * 70}px`;
+                images[i].style.top = `${i * 20}px`;
+                images[i].style.zIndex = i;
+                images[i].addEventListener("click", function() {
+                    changeZ(this);
+                });
+            }
+
+            function changeZ(o) {
+                let images = document.getElementsByTagName("img");
+                let max = 0;
+                for (let i = 0; i < images.length; i++) {
+                    max = parseInt(images[i].style.zIndex) > max ? parseInt(images[i].style.zIndex) : max;
+                }
+                o.style.zIndex = max + 1;
+            }
+        </script>
+        <!--
+            3번
+        -->
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1>innerHTML</h1>
+        <hr>
+        <p>이번 여름에는 어디로 여행을 갈까요?</p>
+        <script>
+            let input = prompt("텍스트 입력", "");
+            let p = document.getElementsByTagName("p")[0];
+            p.innerHTML += `<br>${input}`;
+        </script>
+        <!--
+            4번
+        -->
+        <h1>겜블링 게임</h1>
+        <p>각 숫자를 클릭하면 0에서 2사이의 난수로 바뀝니다.<br>모두 같은 수가 나오면 승리합니다.</p>
+        <hr>
+        <div class="gamble no-drag" onclick="javascript:selectNumber(this);">
+            0
+        </div>
+        <div class="gamble no-drag" onclick="javascript:selectNumber(this);">
+            0
+        </div>
+        <div class="gamble no-drag" onclick="javascript:selectNumber(this);">
+            0
+        </div>
+        <br>
+        <p id="gamble-console">check here to do!</p>
+        <script>
+            function selectNumber(o) {
+                let gamble = document.getElementsByClassName("gamble");
+                let random = Math.floor(Math.random() * 3);
+                o.innerHTML = random;
+                let check = true;
+                for(let i = 0; i < gamble.length; i++) {
+                    if (gamble[i].innerHTML !== "2") {
+                        check = false;
+                        break;
+                    }
+                }
+                let p = document.getElementById("gamble-console");
+                if (check) {
+                    p.innerHTML = "Success - check here to do again";
+                }
+                else {
+                    p.innerHTML = "Fail - check here to do again";
+                }
+            }
+        </script>
+	</body>
+</html>
